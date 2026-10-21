@@ -102,10 +102,7 @@ const PROJECTS = [
     kind: "Social · Campaign",
     status: { label: "Monthly", dot: "live" },
     summary: "Monthly posts and stories for Shades Beach in Jeddah, plus a November campaign.",
-    body: [
-      "Monthly posts and stories for Shades Beach in Jeddah.",
-      "And a November campaign built around activities and workshops.",
-    ],
+    body: ["The November campaign was built around activities and workshops."],
     facts: [["Location", "Jeddah"], ["Output", "Posts, stories"], ["Campaign", "November: activities and workshops"]],
     art: { fx: "20%", fy: "-40%", sx: "0%", sy: "-35%" },
   },
@@ -122,88 +119,49 @@ const PROJECTS = [
   },
 ];
 
-// Content creation — pages from the Canva "Portfolio" folder.
+// Content creation — each collection opens in Canva.
 const CONTENT = [
   {
-    id: "events",
     title: "Live Event Highlights",
-    desc: "Event coverage for the Ministry of Culture, Diriyah Season, Cyberani by Aramco, New Murabba, the Heritage Commission and the Environment Fund.",
-    shots: [
-      ["مسرحية ترحال 2025 · وزارة الثقافة", true],
-      ["مسرحية ترحال 2025", true],
-      ["حفل توزيع الجوائز الثقافية · وزارة الثقافة", true],
-      ["Diriyah Season 24/25"],
-      ["Diriyah Season 24/25"],
-      ["Cyberani Corporate by Aramco"],
-      ["New Murabba"],
-      ["معرض بنان للحرف اليدوية · هيئة التراث", true],
-      ["اليوم الوطني السعودي من قلب الدرعية", true],
-      ["Saudi Games · Diriyah"],
-      ["مبادرة خطى مستدامة مع صندوق البيئة", true],
-    ],
+    kind: "Events",
+    desc: "Ministry of Culture, Diriyah Season, Cyberani by Aramco, New Murabba, the Heritage Commission and the Environment Fund.",
+    href: "https://canva.link/f4e3ibahg962lw4",
+    art: { fx: "10%", fy: "-35%", sx: "-10%", sy: "-30%" },
   },
   {
-    id: "culinary",
     title: "Culinary Visuals",
-    desc: "Restaurant and café content: the D&G opening in Diriyah, Joe & the Juice, Angelina, Sarabeth's, Cova Café, The Sift, Maiz and more.",
-    shots: [
-      ["Flamingo Room"],
-      ["Dolce & Gabbana · Opening of the largest branch, Diriyah"],
-      ["Joe & the Juice"],
-      ["Joe & the Juice"],
-      ["Angelina"],
-      ["Sarabeth's"],
-      ["Brunch & Cake"],
-      ["Cova Café"],
-      ["The Sift"],
-      ["The Sift"],
-      ["Maiz"],
-    ],
+    kind: "Restaurants",
+    desc: "The D&G opening in Diriyah, Joe & the Juice, Angelina, Sarabeth's, Cova Café, The Sift, Maiz and more.",
+    href: "https://canva.link/wzx1jnls7405pw0",
+    art: { fx: "35%", fy: "-30%", sx: "15%", sy: "-40%" },
   },
   {
-    id: "heritage",
     title: "Heritage Storytelling",
-    descAr: "أقدّم محتوى فيديو احترافي يوثّق أجواء وفعاليات الدرعية بأسلوب إبداعي ينقل التجربة الحقيقية للجمهور. أركّز على إبراز التفاصيل، الطاقة، وروح المكان من خلال قصص بصرية جذابة تساعد الجهات والعلامات التجارية على الوصول لجمهورها وتعزيز حضورها في السوشال ميديا. هدفي تحويل كل فعالية ولحظة إلى محتوى مؤثر يلفت الانتباه ويترك انطباعًا لا يُنسى.",
-    desc: "Diriyah, told through video: Bujairi Terrace, Diriyah Season, Sada Al-Wadi and the Samri.",
-    shots: [
-      ["Diriyah · @visitdiriyah · @bujairiterrace · @diriyahseason"],
-      ["Diriyah"],
-      ["Bujairi Terrace"],
-      ["صدى الوادي · Sada Al-Wadi", true],
-      ["السامري في الدرعية", true],
-      ["Diriyah Season · منزال"],
-      ["Diriyah Season · معرض الإمام تركي بن عبدالله"],
-    ],
+    kind: "Diriyah",
+    desc: "Diriyah told through video: Bujairi Terrace, Diriyah Season, Sada Al-Wadi and the Samri.",
+    href: "https://canva.link/5j4v4cdgnrw9kh0",
+    art: { fx: "-5%", fy: "-40%", sx: "25%", sy: "-25%" },
   },
   {
-    id: "sports",
     title: "الاتحاد السعودي للرياضة للجميع",
-    titleAr: true,
-    label: "Sports",
-    desc: "Content for the Saudi Sports for All Federation: Les Mills Festival, Riyadh Marathon, Sand Clash Festival and the Move With Us marathon.",
-    shots: [
-      ["Les Mills Festival 2024 · Riyadh Marathon 2024 · تدريبات المجموعات قبل الماراثون 2025"],
-      ["ماراثون تحرك معنا 2025 · Sand Clash Festival 2024"],
-      ["Group training runs"],
-    ],
+    ar: true,
+    kind: "Sports",
+    desc: "Saudi Sports for All Federation: Les Mills Festival, Riyadh Marathon, Sand Clash Festival and the Move With Us marathon.",
+    href: "https://canva.link/flanpztksadcm7w",
+    art: { fx: "25%", fy: "-20%", sx: "-20%", sy: "-35%" },
   },
 ];
-
-const IMG_EXT = "png";
-const shotSrc = (section, i) => `assets/content/${section}/${String(i + 1).padStart(2, "0")}.${IMG_EXT}`;
 
 // ---------- helpers ----------
 const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const hasArabic = (s) => /[؀-ۿ]/.test(s);
-const textSpan = (s) => (hasArabic(s) ? `<span class="ar" dir="auto">${esc(s)}</span>` : esc(s));
 
-function art(p, big) {
-  const a = p.art || {};
+function art(item, label) {
+  const a = item.art || {};
   const style = `--fx:${a.fx};--fy:${a.fy};--sx:${a.sx};--sy:${a.sy}`;
   return `<div class="art" style="${style}" aria-hidden="true">
-    <span class="eyebrow art-kind">${esc(p.sub || p.kind.split(" · ")[0])}</span>
-    <span class="art-word${p.ar ? " ar" : ""}"${p.ar ? ' dir="rtl"' : ""}>${esc(p.name)}</span>
+    <span class="eyebrow art-kind">${esc(label)}</span>
+    <span class="art-word${item.ar ? " ar" : ""}"${item.ar ? ' dir="rtl"' : ""}>${esc(item.name || item.title)}</span>
   </div>`;
 }
 
@@ -212,31 +170,21 @@ function chip(status) {
 }
 
 function displayName(p) {
-  return p.sub && p.sub !== "Identity" ? `${p.name} (${p.sub})` : p.sub ? `${p.name} identity` : p.nameLatin || p.name;
+  if (p.sub === "Identity") return `${p.name} identity`;
+  return p.sub ? `${p.name} (${p.sub})` : p.name;
+}
+
+function railControls(id) {
+  return `<div class="rail-controls" data-for="${id}">
+    <button class="rail-btn" type="button" data-dir="-1" aria-label="Previous">←</button>
+    <button class="rail-btn" type="button" data-dir="1" aria-label="Next">→</button>
+  </div>`;
 }
 
 // ---------- home ----------
-function renderHome() {
-  $("#groups").innerHTML = GROUPS.map((g) => {
-    const items = PROJECTS.filter((p) => p.group === g.id);
-    return `<div class="group">
-      <div class="group-head"><h3>${esc(g.title)}</h3><span class="caption">${items.length} ${items.length === 1 ? "project" : "projects"}</span></div>
-      <div class="grid">${items.map(card).join("")}</div>
-    </div>`;
-  }).join("");
-
-  $("#feature-list").innerHTML = CONTENT.map((c) =>
-    `<li><span>${c.titleAr ? `<span class="ar">${esc(c.title)}</span>` : esc(c.title)}</span><span class="caption">${c.shots.length} pages</span></li>`
-  ).join("");
-
-  // first image of each collection
-  const picks = [["events", 3], ["culinary", 1], ["heritage", 2], ["sports", 0]];
-  $("#mosaic").innerHTML = picks.map(([s, i]) => `<img src="${shotSrc(s, i)}" alt="" loading="lazy">`).join("");
-}
-
-function card(p) {
+function projectCard(p) {
   return `<a class="card" href="#work-${p.id}">
-    ${art(p)}
+    ${art(p, p.sub || p.kind.split(" · ")[0])}
     <div class="card-body">
       <div class="card-title"><h4>${esc(displayName(p))}</h4>${chip(p.status)}</div>
       <p>${esc(p.summary)}</p>
@@ -245,12 +193,65 @@ function card(p) {
   </a>`;
 }
 
-// ---------- views ----------
+function contentCard(c) {
+  return `<a class="card" href="${c.href}" target="_blank" rel="noopener">
+    ${art(c, c.kind)}
+    <div class="card-body">
+      <div class="card-title"><h4${c.ar ? ' class="ar" dir="rtl"' : ""}>${esc(c.title)}</h4></div>
+      <p>${esc(c.desc)}</p>
+      <span class="card-more out">View the work</span>
+    </div>
+  </a>`;
+}
+
+function renderHome() {
+  $("#groups").innerHTML = GROUPS.map((g) => {
+    const items = PROJECTS.filter((p) => p.group === g.id);
+    const railId = `rail-${g.id}`;
+    return `<div class="group">
+      <div class="group-head">
+        <h3>${esc(g.title)}</h3>
+        <span class="caption">${items.length} ${items.length === 1 ? "project" : "projects"}</span>
+        ${railControls(railId)}
+      </div>
+      <div class="rail" id="${railId}">${items.map(projectCard).join("")}</div>
+    </div>`;
+  }).join("");
+
+  $("#rail-content").innerHTML = CONTENT.map(contentCard).join("");
+  setupRails();
+}
+
+// Arrow buttons slide a row by one card; they dim at either end.
+function setupRails() {
+  document.querySelectorAll(".rail-controls").forEach((ctrl) => {
+    const rail = document.getElementById(ctrl.dataset.for);
+    const [prev, next] = ctrl.querySelectorAll(".rail-btn");
+    const update = () => {
+      const max = rail.scrollWidth - rail.clientWidth;
+      prev.disabled = rail.scrollLeft <= 2;
+      next.disabled = rail.scrollLeft >= max - 2;
+      ctrl.hidden = max <= 2;
+    };
+    ctrl.querySelectorAll(".rail-btn").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const card = rail.firstElementChild;
+        const step = card ? card.getBoundingClientRect().width + 20 : rail.clientWidth;
+        rail.scrollBy({ left: step * Number(btn.dataset.dir), behavior: "smooth" });
+      })
+    );
+    rail.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  });
+}
+
+// ---------- project page ----------
 function renderProject(p) {
   const group = GROUPS.find((g) => g.id === p.group);
-  return `<a class="btn btn-ghost back" href="#work">All work</a>
+  return `<a class="btn btn-glass back" href="#work">All work</a>
   <div class="detail">
-    ${art(p, true)}
+    ${art(p, p.sub || p.kind.split(" · ")[0])}
     <div class="detail-copy">
       <p class="eyebrow">${esc(group.title)}</p>
       <h1>${esc(displayName(p))}</h1>
@@ -259,94 +260,15 @@ function renderProject(p) {
       ${p.body.map((b) => `<p>${esc(b)}</p>`).join("")}
       <dl class="facts">${p.facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
       <div class="detail-actions">
-        ${p.link ? `<a class="btn btn-navy" href="${p.link.href}" target="_blank" rel="noopener">${esc(p.link.label)} ↗</a>` : ""}
+        ${p.link ? `<a class="btn btn-sapphire" href="${p.link.href}" target="_blank" rel="noopener">${esc(p.link.label)} ↗</a>` : ""}
         <a class="btn btn-glass" href="#work">Back to all work</a>
       </div>
     </div>
   </div>`;
 }
 
-function renderHub() {
-  return `<a class="btn btn-ghost back" href="#content">Home</a>
-  <div class="hub-head">
-    <p class="eyebrow">Content creation</p>
-    <h1>Four collections. Real moments.</h1>
-    <p>I shoot, edit and tell the story on the ground. Pick a collection.</p>
-  </div>
-  <div class="hub-grid">${CONTENT.map((c, i) => `
-    <a class="card hub-card" href="#content-${c.id}">
-      <div class="cover"><img src="${shotSrc(c.id, [3, 1, 2, 0][i])}" alt="" loading="lazy"></div>
-      <div class="card-body">
-        <div class="card-title">
-          <h4${c.titleAr ? ' class="ar" dir="rtl"' : ""}>${esc(c.title)}</h4>
-          <span class="chip">${c.label ? esc(c.label) + " · " : ""}${c.shots.length} pages</span>
-        </div>
-        <p>${esc(c.desc)}</p>
-        <span class="card-more">Open collection</span>
-      </div>
-    </a>`).join("")}
-  </div>`;
-}
-
-function renderGallery(c) {
-  return `<a class="btn btn-ghost back" href="#content-hub">Content creation</a>
-  <div class="gallery-head">
-    <p class="eyebrow">Content creation${c.label ? " · " + esc(c.label) : ""}</p>
-    <h1${c.titleAr ? ' class="ar" dir="rtl"' : ""}>${esc(c.title)}</h1>
-    ${c.descAr ? `<p class="desc ar" dir="rtl" lang="ar">${esc(c.descAr)}</p>` : ""}
-    <p class="desc">${esc(c.desc)}</p>
-  </div>
-  <div class="gallery">${c.shots.map(([cap], i) => `
-    <figure class="shot" role="button" tabindex="0" data-i="${i}" aria-label="Open image ${i + 1}">
-      <img src="${shotSrc(c.id, i)}" alt="${esc(cap)}" loading="lazy">
-      <figcaption>${textSpan(cap)}</figcaption>
-    </figure>`).join("")}
-  </div>
-  <nav class="sub-nav" aria-label="Other collections">
-    ${CONTENT.filter((o) => o.id !== c.id).map((o) => `<a class="btn btn-glass" href="#content-${o.id}">${o.titleAr ? `<span class="ar">${esc(o.title)}</span>` : esc(o.title)}</a>`).join("")}
-  </nav>`;
-}
-
-// ---------- lightbox ----------
-let lb = { section: null, i: 0, opener: null };
-
-function openLightbox(c, i) {
-  lb = { section: c, i, opener: document.activeElement };
-  $("#lightbox").hidden = false;
-  showShot();
-  $("#lb-close").focus();
-}
-function showShot() {
-  const { section: c, i } = lb;
-  const [cap] = c.shots[i];
-  $("#lb-img").src = shotSrc(c.id, i);
-  $("#lb-img").alt = cap;
-  $("#lb-caption").innerHTML = textSpan(cap);
-  $("#lb-count").textContent = `${i + 1} / ${c.shots.length}`;
-}
-function step(d) {
-  const n = lb.section.shots.length;
-  lb.i = (lb.i + d + n) % n;
-  showShot();
-}
-function closeLightbox() {
-  $("#lightbox").hidden = true;
-  if (lb.opener) lb.opener.focus();
-}
-
-$("#lb-close").addEventListener("click", closeLightbox);
-$("#lb-prev").addEventListener("click", () => step(-1));
-$("#lb-next").addEventListener("click", () => step(1));
-$("#lightbox").addEventListener("click", (e) => { if (e.target.id === "lightbox") closeLightbox(); });
-document.addEventListener("keydown", (e) => {
-  if ($("#lightbox").hidden) return;
-  if (e.key === "Escape") closeLightbox();
-  if (e.key === "ArrowRight") step(1);
-  if (e.key === "ArrowLeft") step(-1);
-});
-
 // ---------- router ----------
-// Hashes are plain tokens: #work-keplerr, #content-hub, #content-events
+// Hashes are plain tokens: #work, #content, #work-keplerr
 const HOME_ANCHORS = ["", "top", "work", "content", "about", "contact"];
 
 function route() {
@@ -357,38 +279,20 @@ function route() {
   if (HOME_ANCHORS.includes(hash)) {
     view.hidden = true;
     home.hidden = false;
+    window.dispatchEvent(new Event("resize")); // re-check slide buttons now the rows are visible
     const target = hash && hash !== "top" ? document.getElementById(hash) : null;
     if (target) target.scrollIntoView();
     else window.scrollTo(0, 0);
     return;
   }
 
-  let html = null;
-  let gallery = null;
-  if (hash.startsWith("work-")) {
-    const p = PROJECTS.find((x) => x.id === hash.slice(5));
-    if (p) html = renderProject(p);
-  } else if (hash === "content-hub") {
-    html = renderHub();
-  } else if (hash.startsWith("content-")) {
-    gallery = CONTENT.find((x) => x.id === hash.slice(8));
-    if (gallery) html = renderGallery(gallery);
-  }
-
-  if (!html) { location.hash = ""; return; }
+  const p = hash.startsWith("work-") && PROJECTS.find((x) => x.id === hash.slice(5));
+  if (!p) { location.hash = ""; return; }
 
   home.hidden = true;
   view.hidden = false;
-  view.innerHTML = html;
+  view.innerHTML = renderProject(p);
   window.scrollTo(0, 0);
-
-  if (gallery) {
-    view.querySelectorAll(".shot").forEach((el) => {
-      const open = () => openLightbox(gallery, Number(el.dataset.i));
-      el.addEventListener("click", open);
-      el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
-    });
-  }
 }
 
 // ---------- copy email ----------
