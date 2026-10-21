@@ -450,6 +450,23 @@ p { margin: 0; }
 .detail .art-shot { aspect-ratio: auto; height: clamp(420px, 56vw, 640px); }
 .detail .art-shot img { top: 14%; width: min(300px, 62%); }
 
+/* Content collection cards: a page from each Canva collection */
+.art-photo { background: var(--ink); }
+.art-photo::before, .art-photo::after { display: none; }
+.art-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--slow) var(--ease);
+}
+.card:hover .art-photo img { transform: scale(1.03); }
+.content-head .stat { flex: none; min-width: 0; }
+.content-head .stat span { white-space: nowrap; }
+
+.contact-lines { display: grid; gap: 12px; justify-items: start; }
+a.email { text-decoration: none; user-select: text; }
+a.email:hover { color: var(--champagne); }
+
 /* ---------- Detail view ---------- */
 .view { padding-block: 48px 0; }
 .back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 32px; }

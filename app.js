@@ -84,6 +84,7 @@ const CONTENT = [
   {
     title: "Live Event Highlights",
     kind: "Events",
+    photo: "assets/content/events.jpg",
     desc: "Ministry of Culture, Diriyah Season, Cyberani by Aramco, New Murabba, the Heritage Commission and the Environment Fund.",
     href: "https://canva.link/f4e3ibahg962lw4",
     art: { fx: "10%", fy: "-35%", sx: "-10%", sy: "-30%" },
@@ -91,6 +92,7 @@ const CONTENT = [
   {
     title: "Culinary Visuals",
     kind: "Restaurants",
+    photo: "assets/content/culinary.jpg",
     desc: "The D&G opening in Diriyah, Joe & the Juice, Angelina, Sarabeth's, Cova Café, The Sift, Maiz and more.",
     href: "https://canva.link/wzx1jnls7405pw0",
     art: { fx: "35%", fy: "-30%", sx: "15%", sy: "-40%" },
@@ -98,6 +100,7 @@ const CONTENT = [
   {
     title: "Heritage Storytelling",
     kind: "Diriyah",
+    photo: "assets/content/heritage.jpg",
     desc: "Diriyah told through video: Bujairi Terrace, Diriyah Season, Sada Al-Wadi and the Samri.",
     href: "https://canva.link/5j4v4cdgnrw9kh0",
     art: { fx: "-5%", fy: "-40%", sx: "25%", sy: "-25%" },
@@ -106,6 +109,7 @@ const CONTENT = [
     title: "الاتحاد السعودي للرياضة للجميع",
     ar: true,
     kind: "Sports",
+    photo: "assets/content/sports.jpg",
     desc: "Saudi Sports for All Federation: Les Mills Festival, Riyadh Marathon, Sand Clash Festival and the Move With Us marathon.",
     href: "https://canva.link/flanpztksadcm7w",
     art: { fx: "25%", fy: "-20%", sx: "-20%", sy: "-35%" },
@@ -161,7 +165,9 @@ function projectCard(p) {
 
 function contentCard(c) {
   return `<a class="card" href="${c.href}" target="_blank" rel="noopener">
-    ${art(c, c.kind)}
+    <div class="art art-photo">
+      <img src="${c.photo}" alt="${esc(c.title)} preview" loading="lazy">
+    </div>
     <div class="card-body">
       <div class="card-title"><h4${c.ar ? ' class="ar" dir="rtl"' : ""}>${esc(c.title)}</h4></div>
       <p>${esc(c.desc)}</p>
