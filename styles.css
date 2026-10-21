@@ -464,7 +464,7 @@ p { margin: 0; }
 .content-head .stat span { white-space: nowrap; }
 
 .contact-lines { display: grid; gap: 12px; justify-items: start; }
-a.email { text-decoration: none; user-select: text; }
+a.email { text-decoration: underline; text-decoration-color: rgba(231, 226, 206, 0.35); text-underline-offset: 6px; user-select: text; }
 a.email:hover { color: var(--champagne); }
 
 /* ---------- Detail view ---------- */
