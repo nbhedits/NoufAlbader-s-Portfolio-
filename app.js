@@ -4,7 +4,6 @@ const GROUPS = [
   { id: "web", title: "Websites and web tools" },
   { id: "apps", title: "Apps (UI/UX)" },
   { id: "identity", title: "Design systems and UI work" },
-  { id: "campaigns", title: "Campaigns and content" },
 ];
 
 const PROJECTS = [
@@ -16,7 +15,11 @@ const PROJECTS = [
     kind: "SaaS · Web app",
     status: { label: "Live", dot: "live" },
     summary: "Arabic-first SaaS for Saudi agencies. Client reporting and an approval portal in one place.",
-    body: ["Pulse is live now. BD and Command come next."],
+    body: [
+      "Clients open the portal, see every deliverable with its status, and approve or ask for changes. In Arabic or English, light or dark.",
+      "Pulse is live now. BD and Command come next.",
+    ],
+    shot: "assets/work/pulse.jpg",
     facts: [["Product", "Pulse"], ["For", "Saudi agencies"], ["Language", "Arabic-first"], ["Next", "BD, Command"]],
     link: { href: "https://app.keplerrai.com/", label: "Open app.keplerrai.com" },
     art: { fx: "5%", fy: "-35%", sx: "-15%", sy: "-20%" },
@@ -27,23 +30,12 @@ const PROJECTS = [
     name: "Marble",
     kind: "Website",
     status: { label: "Live", dot: "live" },
-    summary: "Web studio website.",
-    body: ["Web studio website, live on Vercel."],
-    facts: [["Type", "Website"], ["Hosting", "Vercel"]],
+    summary: "Web studio for US med spas and aesthetic clinics. Websites that fill your calendar.",
+    body: ["Clinics already pay for ads. Marble builds the site that turns that traffic into bookings."],
+    facts: [["Type", "Website"], ["For", "US med spas, aesthetic clinics"], ["Hosting", "Vercel"]],
+    shot: "assets/work/marble.jpg",
     link: { href: "https://marble-web-studio.vercel.app/", label: "Visit Marble" },
     art: { fx: "35%", fy: "-40%", sx: "20%", sy: "-35%" },
-  },
-  {
-    id: "onemove",
-    group: "web",
-    name: "ONE-MOVE",
-    kind: "Website",
-    status: { label: "Live", dot: "live" },
-    summary: "Website, live at onemove.site.",
-    body: ["Website, live at onemove.site."],
-    facts: [["Type", "Website"], ["Domain", "onemove.site"]],
-    link: { href: "https://www.onemove.site/", label: "Visit ONE-MOVE" },
-    art: { fx: "-10%", fy: "-20%", sx: "-20%", sy: "-45%" },
   },
   {
     id: "cariq",
@@ -54,8 +46,10 @@ const PROJECTS = [
     summary: "AI car-manual assistant for Saudi-spec cars. Built in FlutterFlow.",
     body: [
       "Car manuals are long and nobody reads them. CarIQ is an AI assistant that knows the manual for Saudi-spec cars.",
+      "Pick your car, then ask AI about it or browse features and controls, warning lights, maintenance basics and FAQs.",
       "Designed and built in FlutterFlow, and taken through App Store submission cycles.",
     ],
+    shot: "assets/work/cariq.jpg",
     facts: [["Built with", "FlutterFlow"], ["Market", "Saudi-spec cars"], ["Stage", "App Store submission"]],
     art: { fx: "40%", fy: "-25%", sx: "-5%", sy: "-40%" },
   },
@@ -82,40 +76,6 @@ const PROJECTS = [
     body: ["The visual identity for Marble's web studio."],
     facts: [["Scope", "Identity"], ["Client", "Marble"]],
     art: { fx: "-5%", fy: "-30%", sx: "30%", sy: "-30%" },
-  },
-  {
-    id: "onemove-identity",
-    group: "identity",
-    name: "ONE-MOVE",
-    sub: "Identity",
-    kind: "Identity · Design system",
-    status: { label: "Done", dot: "done" },
-    summary: "Visual identity for ONE-MOVE.",
-    body: ["The visual identity for ONE-MOVE."],
-    facts: [["Scope", "Identity"], ["Client", "ONE-MOVE"]],
-    art: { fx: "30%", fy: "-15%", sx: "-25%", sy: "-30%" },
-  },
-  {
-    id: "shades",
-    group: "campaigns",
-    name: "Shades Beach",
-    kind: "Social · Campaign",
-    status: { label: "Monthly", dot: "live" },
-    summary: "Monthly posts and stories for Shades Beach in Jeddah, plus a November campaign.",
-    body: ["The November campaign was built around activities and workshops."],
-    facts: [["Location", "Jeddah"], ["Output", "Posts, stories"], ["Campaign", "November: activities and workshops"]],
-    art: { fx: "20%", fy: "-40%", sx: "0%", sy: "-35%" },
-  },
-  {
-    id: "hakkaka",
-    group: "campaigns",
-    name: "Hakkaka Najdiya",
-    kind: "Copywriting · Instagram",
-    status: { label: "Ongoing", dot: "" },
-    summary: "Instagram captions written in the account's Saudi white-dialect voice.",
-    body: ["Instagram captions for Hakkaka Najdiya, written in the account's own Saudi white-dialect voice."],
-    facts: [["Platform", "Instagram"], ["Voice", "Saudi white dialect"], ["Output", "Captions"]],
-    art: { fx: "0%", fy: "-25%", sx: "15%", sy: "-40%" },
   },
 ];
 
@@ -159,6 +119,12 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&
 function art(item, label) {
   const a = item.art || {};
   const style = `--fx:${a.fx};--fy:${a.fy};--sx:${a.sx};--sy:${a.sy}`;
+  if (item.shot) {
+    return `<div class="art art-shot" style="${style}">
+      <span class="eyebrow art-kind" aria-hidden="true">${esc(label)}</span>
+      <img src="${item.shot}" alt="${esc(item.name)} screen" loading="lazy">
+    </div>`;
+  }
   return `<div class="art" style="${style}" aria-hidden="true">
     <span class="eyebrow art-kind">${esc(label)}</span>
     <span class="art-word${item.ar ? " ar" : ""}"${item.ar ? ' dir="rtl"' : ""}>${esc(item.name || item.title)}</span>
